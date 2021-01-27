@@ -68,8 +68,8 @@ class ParliamentChart {
       getSeats: d => d.seats,
     },
     circle: {
-      stroke: d => '#ccc',
-      strokeWidth: 1,
+      stroke: (d) => '#fff',
+      strokeWidth: 0,
       fill: (d) => scaleOrdinal(['gop', 'dem'], ['#dd1d32', '#3181c6'])(d.id),
     },
   };
@@ -160,8 +160,8 @@ class ParliamentChart {
       .attr('cy', d => d.cartesian.y)
       .attr('r', d => 0.4 * rowWidth)
       .attr('fill', d => circle.fill(d.party))
-      .attr('stroke', d => circle.stroke(party.getId(d.party)))
-      .attr('strokeWidth', circle.strokeWidth);
+      .attr('stroke', d => circle.stroke(d.party))
+      .attr('stroke-width', circle.strokeWidth);
 
     return this; // Generally, always return the chart class from draw!
   }

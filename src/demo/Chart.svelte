@@ -18,10 +18,12 @@ Follow the notes below! -->
   const ukScale = d => d.colour;
 
   let circleFill = usScale;
+  let strokeWidth = 0;
+  let stroke = () => '#fff';
   // ...
 
   // 🎈 Tie your custom props back together into one chartProps object.
-  $: chartProps = { circle: { fill: circleFill }};
+  $: chartProps = { circle: { fill: circleFill, strokeWidth, stroke }};
 
   let chartData = USHouse;
 
@@ -54,11 +56,14 @@ Follow the notes below! -->
     on:click={() => {
       chartData = USHouse;
       circleFill = usScale;
+      strokeWidth = 0;
     }}>U.S. House</button>
   <button
     on:click={() => {
       chartData = UKParliament;
-      circleFill = ukScale;
+      circleFill = () => '#fff';
+      strokeWidth = 1;
+      stroke = ukScale;
     }}>U.K. Parliament</button>
 </div>
 
