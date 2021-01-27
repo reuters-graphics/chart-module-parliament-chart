@@ -1754,9 +1754,9 @@ var ParliamentChart = /*#__PURE__*/function () {
       },
       circle: {
         stroke: function stroke(d) {
-          return '#ccc';
+          return '#fff';
         },
-        strokeWidth: 1,
+        strokeWidth: 0,
         fill: function fill(d) {
           return d3Scale.scaleOrdinal(['gop', 'dem'], ['#dd1d32', '#3181c6'])(d.id);
         }
@@ -1894,8 +1894,8 @@ var ParliamentChart = /*#__PURE__*/function () {
       }).attr('fill', function (d) {
         return circle.fill(d.party);
       }).attr('stroke', function (d) {
-        return circle.stroke(party.getId(d.party));
-      }).attr('strokeWidth', circle.strokeWidth);
+        return circle.stroke(d.party);
+      }).attr('stroke-width', circle.strokeWidth);
       return this; // Generally, always return the chart class from draw!
     }
   }]);
