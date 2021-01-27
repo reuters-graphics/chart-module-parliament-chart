@@ -21,13 +21,13 @@ const chart = new ParliamentChart();
 // as well as any props or data to their respective methods. Then call draw.
 chart
   .selection('#chart')
-  .data([1, 2, 3])
-  .props({ stroke: 'orange' })
+  .data(yourData)
+  .props(yourProps)
   .draw();
 
 // You can call any method again to update the chart.
 chart
-  .data([3, 4, 5])
+  .data(yourNewData)
   .draw();
 
 // Or just call the draw function alone, which is useful for resizing the chart.

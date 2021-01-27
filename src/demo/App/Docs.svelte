@@ -72,7 +72,7 @@ chart
 <div class='chart-docs'>
   <h5>Use</h5>
   <Highlight language={bash} code={installDocs} />
-  <Highlight language={scss} code={styleDocs} />
+  <!-- <Highlight language={scss} code={styleDocs} /> -->
   <Highlight language={javascript} code={jsDocs} />
 </div>
 
