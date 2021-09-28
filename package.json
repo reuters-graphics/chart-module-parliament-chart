@@ -20,7 +20,7 @@
     "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
   },
   "scripts": {
-    "chart:dev": "snowpack dev",
+    "start": "snowpack dev",
     "chart:build-docs": "snowpack build",
     "chart:build-lib": "rollup -c rollup.config.lib.js"
   },
