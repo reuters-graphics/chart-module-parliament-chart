@@ -16,23 +16,25 @@ const babelOpts = {
   ],
 };
 
+const plugins = [
+  json(),
+  alias({
+    resolve: ['.js'],
+  }),
+  babel(babelOpts),
+  resolve({
+    preferBuiltins: true,
+    extensions: ['.js'],
+    modulesOnly: true,
+  }),
+];
+
 export default {
   input: path.resolve(process.cwd(), 'src/js/index.js'),
   output: {
-    file: path.resolve(process.cwd(), pkg.main),
-    format: 'cjs',
+    file: path.resolve(process.cwd(), 'dist/index.js'),
+    format: 'es',
   },
   external: Object.keys(pkg.dependencies),
-  plugins: [
-    json(),
-    alias({
-      resolve: ['.js'],
-    }),
-    babel(babelOpts),
-    resolve({
-      preferBuiltins: true,
-      extensions: ['.js'],
-      modulesOnly: true,
-    }),
-  ],
+  plugins,
 };

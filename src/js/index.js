@@ -3,7 +3,7 @@ import 'd3-transition';
 import * as d3 from 'd3-selection';
 
 import { appendSelect } from 'd3-appendselect';
-import merge from 'lodash/merge';
+import { merge } from 'lodash-es';
 import { scaleOrdinal } from 'd3-scale';
 
 d3.selection.prototype.appendSelect = appendSelect;
