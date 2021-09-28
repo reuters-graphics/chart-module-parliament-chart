@@ -21,8 +21,7 @@
   },
   "scripts": {
     "start": "snowpack dev",
-    "chart:build-docs": "snowpack build",
-    "chart:build-lib": "rollup -c rollup.config.lib.js"
+    "build": "snowpack build && rollup -c rollup.config.lib.js"
   },
   "dependencies": {
     "d3": "^7.0.0",
