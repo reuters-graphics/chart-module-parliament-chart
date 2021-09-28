@@ -7,13 +7,13 @@ See the [demo page](https://reuters-graphics.github.io/chart-module-parliament-c
 ### Install
 
 ```
-$ yarn add https://github.com/reuters-graphics/chart-module-parliament-chart.git
+yarn add https://github.com/reuters-graphics/chart-module-parliament-chart.git
 ```
 
 ### Use
 
 ```javascript
-import ParliamentChart from '@reuters-graphics/chart-module-parliament-chart';
+import ParliamentChart from '@reuters-graphics/parliament-chart';
 
 const chart = new ParliamentChart();
 
@@ -39,7 +39,7 @@ To apply this chart's default styles when using SCSS, simply define the variable
 ```CSS
 $ParliamentChart-container: '#chart';
 
-@import '~@reuters-graphics/chart-module-parliament-chart/src/scss/chart';
+@import '~@reuters-graphics/parliament-chart/src/scss/chart';
 ```
 
 ## Developing chart modules
