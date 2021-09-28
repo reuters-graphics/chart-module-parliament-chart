@@ -29,7 +29,15 @@ const plugins = [
   }),
 ];
 
-export default {
+export default [{
+  input: path.resolve(process.cwd(), 'src/js/index.js'),
+  output: {
+    file: path.resolve(process.cwd(), 'dist/index.cjs'),
+    format: 'cjs',
+  },
+  external: Object.keys(pkg.dependencies),
+  plugins,
+}, {
   input: path.resolve(process.cwd(), 'src/js/index.js'),
   output: {
     file: path.resolve(process.cwd(), 'dist/index.js'),
@@ -37,4 +45,4 @@ export default {
   },
   external: Object.keys(pkg.dependencies),
   plugins,
-};
+}];

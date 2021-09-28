@@ -4,7 +4,10 @@
   "type": "module",
   "exports": {
     "./package.json": "./package.json",
-    ".": "./dist/index.js"
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
   },
   "license": "MIT",
   "private": false,
