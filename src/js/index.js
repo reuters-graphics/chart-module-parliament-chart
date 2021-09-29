@@ -64,8 +64,8 @@ class ParliamentChart {
     },
     innerRadiusCoef: 0.25,
     party: {
-      getId: d => d.id,
-      getSeats: d => d.seats,
+      getId: (d) => d.id,
+      getSeats: (d) => d.seats,
     },
     circle: {
       stroke: (d) => '#fff',
@@ -88,7 +88,7 @@ class ParliamentChart {
     const { width: containerWidth } = containerDiv.getBoundingClientRect();
 
     const width = containerWidth - margin.left - margin.right;
-    const height = (containerWidth / 2) - margin.top - margin.bottom;
+    const height = containerWidth / 2 - margin.top - margin.bottom;
 
     const outerParliamentRadius = Math.min(width / 2, height);
     const innerParliementRadius = outerParliamentRadius * innerRadiusCoef;
@@ -100,7 +100,13 @@ class ParliamentChart {
     let b = 0.5;
     const a = innerRadiusCoef / (1 - innerRadiusCoef);
 
-    function series(s, n) { let r = 0; for (let i = 0; i <= n; i++) { r += s(i); } return r; }
+    function series(s, n) {
+      let r = 0;
+      for (let i = 0; i <= n; i++) {
+        r += s(i);
+      }
+      return r;
+    }
     while (maxSeatNumber < nSeats) {
       nRows++;
       b += a;
@@ -113,7 +119,10 @@ class ParliamentChart {
     const seatsToRemove = maxSeatNumber - nSeats;
     for (let i = 0; i < nRows; i++) {
       const rowRadius = innerParliementRadius + rowWidth * (i + 0.5);
-      const rowSeats = Math.floor(Math.PI * (b + i)) - Math.floor(seatsToRemove / nRows) - (seatsToRemove % nRows > i ? 1 : 0);
+      const rowSeats =
+        Math.floor(Math.PI * (b + i)) -
+        Math.floor(seatsToRemove / nRows) -
+        (seatsToRemove % nRows > i ? 1 : 0);
       const anglePerSeat = Math.PI / rowSeats;
       for (let j = 0; j < rowSeats; j++) {
         const s = {};
@@ -127,9 +136,11 @@ class ParliamentChart {
         };
         seats.push(s);
       }
-    };
+    }
 
-    seats.sort((a, b) => a.polar.theta - b.polar.theta || b.polar.r - a.polar.r);
+    seats.sort(
+      (a, b) => a.polar.theta - b.polar.theta || b.polar.r - a.polar.r
+    );
 
     let partyIndex = 0;
     let seatIndex = 0;
@@ -146,21 +157,26 @@ class ParliamentChart {
       seatIndex++;
     });
 
-    const container = this.selection().appendSelect('svg')
+    const container = this.selection()
+      .appendSelect('svg')
       .attr('width', width + margin.left + margin.right)
       .attr('height', height + margin.bottom + margin.top)
       .appendSelect('g.parliament')
-      .attr('transform', `translate(${containerWidth / 2}, ${outerParliamentRadius})`);
+      .attr(
+        'transform',
+        `translate(${containerWidth / 2}, ${outerParliamentRadius})`
+      );
 
-    container.selectAll('.seat')
+    container
+      .selectAll('.seat')
       .data(seats)
       .join('circle')
-      .attr('class', d => `seat ${party.getId(d.party).replace(/ /g, '-')}`)
-      .attr('cx', d => d.cartesian.x)
-      .attr('cy', d => d.cartesian.y)
-      .attr('r', d => 0.4 * rowWidth)
-      .attr('fill', d => circle.fill(d.party))
-      .attr('stroke', d => circle.stroke(d.party))
+      .attr('class', (d) => `seat ${party.getId(d.party).replace(/ /g, '-')}`)
+      .attr('cx', (d) => d.cartesian.x)
+      .attr('cy', (d) => d.cartesian.y)
+      .attr('r', (d) => 0.4 * rowWidth)
+      .attr('fill', (d) => circle.fill(d.party))
+      .attr('stroke', (d) => circle.stroke(d.party))
       .attr('stroke-width', circle.strokeWidth);
 
     return this; // Generally, always return the chart class from draw!

@@ -187,6 +187,7 @@ var ParliamentChart = /*#__PURE__*/function () {
           seats.push(s);
         }
       }
+
       seats.sort(function (a, b) {
         return a.polar.theta - b.polar.theta || b.polar.r - a.polar.r;
       });

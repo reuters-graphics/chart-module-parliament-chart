@@ -13,9 +13,9 @@ Follow the notes below! -->
   let chart = new ParliamentChart();
   let chartContainer;
 
-
-  const usScale = d => scaleOrdinal(['gop', 'dem'], ['#dd1d32', '#3181c6'])(d.id);
-  const ukScale = d => d.colour;
+  const usScale = (d) =>
+    scaleOrdinal(['gop', 'dem'], ['#dd1d32', '#3181c6'])(d.id);
+  const ukScale = (d) => d.colour;
 
   let circleFill = usScale;
   let strokeWidth = 0;
@@ -23,7 +23,7 @@ Follow the notes below! -->
   // ...
 
   // 🎈 Tie your custom props back together into one chartProps object.
-  $: chartProps = { circle: { fill: circleFill, strokeWidth, stroke }};
+  $: chartProps = { circle: { fill: circleFill, strokeWidth, stroke } };
 
   let chartData = USHouse;
 
@@ -39,15 +39,6 @@ Follow the notes below! -->
   });
 </script>
 
-<!-- 🖌️ Style your demo page here -->
-<style lang="scss">
-  .chart-options {
-    button {
-      padding: 5px 15px;
-    }
-  }
-</style>
-
 <div id="parliament-chart-container" bind:this={chartContainer} />
 
 <div class="chart-options">
@@ -57,17 +48,28 @@ Follow the notes below! -->
       chartData = USHouse;
       circleFill = usScale;
       strokeWidth = 0;
-    }}>U.S. House</button>
+    }}>U.S. House</button
+  >
   <button
     on:click={() => {
       chartData = UKParliament;
       circleFill = () => '#fff';
       strokeWidth = 1;
       stroke = ukScale;
-    }}>U.K. Parliament</button>
+    }}>U.K. Parliament</button
+  >
 </div>
 
 <!-- ⚙️ These components will automatically create interactive documentation for you chart! -->
 <Docs />
-<Explorer title='Data' data={chart.data()} />
-<Explorer title='Props' data={chart.props()} />
+<Explorer title="Data" data={chart.data()} />
+<Explorer title="Props" data={chart.props()} />
+
+<!-- 🖌️ Style your demo page here -->
+<style lang="scss">
+  .chart-options {
+    button {
+      padding: 5px 15px;
+    }
+  }
+</style>
